@@ -20,14 +20,18 @@ function App() {
   const dir = 'consumers/';
 
   // CAMBIAR SEGÚN PROYECTO!!!
-  const [allPets, setAllPets] = useState([]);
-
   const [usuario,setUsuario] = useState();
 
   return (
 
       <UserContext.Provider  value={{usuario, setUsuario}}>
-        <div className="App">
+        <div className="App" 
+          style={{
+            overflow: 'auto',
+            margin: '0',
+            padding: '0',
+            height: 'auto'
+          }}>
             <Routes>
 
               <Route 
@@ -50,8 +54,6 @@ function App() {
                 path="/*" 
                 element={
                   <Main 
-                    allPets={allPets} 
-                    setAllPets={setAllPets}
                     dir={dir}
                   />
                 } 
@@ -61,8 +63,6 @@ function App() {
                 path="/readings/:id/:id2" 
                 element={
                   <ReadingList 
-                    allPets={allPets} 
-                    setAllPets={setAllPets}
                     dir={dir}
                   />
                 } 
@@ -75,8 +75,6 @@ function App() {
                 path="/admin" 
                 element={
                   <MainAdmin 
-                    allPets={allPets} 
-                    setAllPets={setAllPets}
                     dir={dir} />
                 } />
 
@@ -84,8 +82,6 @@ function App() {
                 path='/admin/nuevousuario' 
                 element={
                   <NuevoUsuario 
-                    allPets={allPets} 
-                    setAllPets={setAllPets} 
                     dir={dir} />
                 }>
               </Route>
@@ -94,8 +90,6 @@ function App() {
                 path='/admin/editarusuario' 
                 element={
                   <EditarUsuario 
-                    allPets={allPets} 
-                    setAllPets={setAllPets} 
                     dir={dir} />
                 }>
               </Route>
@@ -104,8 +98,6 @@ function App() {
                 path='/admin/ingresarlectura' 
                 element={
                   <IngresarLectura 
-                    allPets={allPets} 
-                    setAllPets={setAllPets} 
                     dir={dir} />
                 }>
               </Route>
@@ -114,8 +106,6 @@ function App() {
                 path='/admin/editarlectura' 
                 element={
                   <EditarLectura 
-                    allPets={allPets} 
-                    setAllPets={setAllPets} 
                     dir={dir} />
                 }>
               </Route>
@@ -124,8 +114,6 @@ function App() {
                 path='/admin/listado' 
                 element={
                   <ConsumerList 
-                    allPets={allPets} 
-                    setAllPets={setAllPets} 
                     dir={dir} />}>
               </Route>
 

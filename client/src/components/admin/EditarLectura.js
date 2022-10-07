@@ -160,18 +160,19 @@ const EditarLectura = (props) => {
                     return(
                         <React.Fragment>
             <Container className="d-flex flex-wrap justify-content-center">
-                <Card className='w-75 mt-5' border='light' style={{boxShadow: '1px 1px 10px 2px #D1D1D1'}}>
+                <Card className='w-75 mt-5' border='light' style={{boxShadow: '1px 1px 10px 2px #D1D1D1', minWidth: '360px'}}>
                     <Card.Header as='h2' style={{background: '#ffffff', color: '#666666'}}>Administrador de Información</Card.Header>
                     <Card.Body>
                         <Card.Title as='h4' style={{color: '#666666'}}>Ingresar nueva lectura</Card.Title>
                         <Form className="mt-2" onSubmit={handleSubmit} style={{fontSize: '1em'}}>
                             <Container 
                                 as={Row}
-                                className="d-flex flex-wrap w-75 mb-2"
+                                className="d-flex flex-wrap flex-column align-items-center w-100 mb-2"
                                 style={{
-                                    marginLeft: '40px',
+                                    // marginLeft: '40px',
+                                    minWidth: '360px',
                                     borderRadius: '4px',
-                                    background: 'lightblue',
+                                    background: 'none',
                                 }}
                             >
                                 <Form.Label className="mb-2 mt-3 w-25">
@@ -184,7 +185,9 @@ const EditarLectura = (props) => {
                                         <option value=''>Listado de usuarios</option>
                                     {usuarios.map((itm,idx)=>{
                                         return(
-                                            <option key={idx} medicion={itm.userID} value={itm._id}>{itm.userID} - {itm.name}</option>
+                                            <option key={idx} medicion={itm.userID} value={itm._id}
+                                                style={{fontSize: '1em'}}
+                                            >{itm.userID} - {itm.name}</option>
                                         )
                                     })}
                                 </Form.Select>
@@ -196,7 +199,11 @@ const EditarLectura = (props) => {
                             >
                                 <Row>
                                     <Col>
-                                        <Form.Group className="mb-3 w-75">
+                                        <Form.Group className="d-flex flex-wrap flex-column align-items-center mb-3 w-75"
+                                            style={{
+                                                minWidth: '250px'
+                                            }}
+                                        >
                                             <Form.Label className="mb-2 mt-2 w-25">
                                                 Año: 
                                             </Form.Label>
@@ -210,7 +217,11 @@ const EditarLectura = (props) => {
                                         </Form.Group>
                                     </Col>
                                     <Col>
-                                        <Form.Group className="mb-3 w-75">
+                                        <Form.Group className="mb-3 w-75"
+                                            style={{
+                                                minWidth: '250px'
+                                            }}
+                                        >
                                             <Form.Label className="mb-2 mt-2 w-25">
                                                 Mes: 
                                             </Form.Label>
@@ -245,11 +256,16 @@ const EditarLectura = (props) => {
                                             </Container>
                                             
                                             <Container as={Row} className="justify-content-center">
-                                                <Form.Group className="mb-3 w-75">
+                                                <Form.Group className="d-flex flex-wrap flex-column align-items-center mb-3 w-75"
+                                                    style={{
+                                                        minWidth: '250px'
+                                                    }}
+                                                >
                                                     <Form.Label className="mb-2 mt-2 w-25">
                                                         Lectura: 
                                                     </Form.Label>
                                                     <Form.Control 
+                                                        style={{width: '20%', minWidth: '250px'}}
                                                         type="number" 
                                                         name="medicion" 
                                                         value={lectura.medicion}
@@ -257,21 +273,23 @@ const EditarLectura = (props) => {
                                                         size='sm'
                                                         onChange={updateLecturaDos} />
                                                 </Form.Group>
+                                                <Button 
+                                                    className="mb-3 w-25" 
+                                                    name='medicion'
+                                                    value={lectura.medicion} 
+                                                    variant="light" 
+                                                    onClick={showReading}
+                                                    style={{minWidth: '200px', margin: '10px'}}
+                                                >
+                                                    <BiUpload/> Mostrar lectura actual
+                                                </Button>
+                                                <Button className="mb-3 w-25" variant="warning" type="submit"
+                                                    style={{minWidth: '200px', margin: '10px'}}
+                                                >
+                                                    <BiUpload/> Ingresar lectura
+                                                </Button>
                                             </Container>
 
-                                            <Button 
-                                                className="mb-3 w-25" 
-                                                name='medicion'
-                                                value={lectura.medicion} 
-                                                variant="light" 
-                                                onClick={showReading}
-                                                style={{marginRight: '100px'}}
-                                            >
-                                                <BiUpload/> Mostrar lectura actual
-                                            </Button>
-                                            <Button className="mb-3 w-25" variant="warning" type="submit">
-                                                <BiUpload/> Ingresar lectura
-                                            </Button>
                                         </Container>
                                 }
                         </Form>
@@ -291,13 +309,13 @@ const EditarLectura = (props) => {
                     </Card.Footer>
                 </Card>
             </Container>
-            <div className="custom-shape-divider-bottom-1663632977">
+            {/* <div className="custom-shape-divider-bottom-1663632977">
                 <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                     <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" className="shape-fill"></path>
                     <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" className="shape-fill"></path>
                     <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" className="shape-fill"></path>
                 </svg>
-            </div>
+            </div> */}
         </React.Fragment>
     )
 }

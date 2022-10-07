@@ -19,7 +19,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 require('./config/mongoose.config');
-require('./routes/pet.routes')(app);
 require('./routes/usuario.routes')(app);
 require('./routes/consumer.routes')(app);
 require('./routes/reading.routes')(app);
